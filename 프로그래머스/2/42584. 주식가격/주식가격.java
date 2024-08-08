@@ -2,27 +2,27 @@ import java.util.*;
 
 class Solution {
     public int[] solution(int[] prices) {
-        //1. 리턴 배열로 만들고, 스택 만들기
-        int[] answer = new int[prices.length];
+        // ans 배열로
+        int n = prices.length;
+        int[] answer = new int[n];
         Deque<Integer> stack = new ArrayDeque<>();
         
-        //2. 리턴값 규칙 만들기  여기서 i는 인덱스 :0부터 시작한당
-        for(int i =0; i <prices.length; i++ ) {
+        //냅따 for문 돌려 
+            // 먼저 스택에 넣고, 하나씩 peek하면서 j랑 i랑 비교해 그러고 ans에 넣고 스택에서 제거
+        for(int i =0; i<n; i++) {
             while(!stack.isEmpty()) {
                 int j = stack.peek();
-                if(prices[j] > prices[i]) {
-                    answer[j] = i - j;
+                if(prices[j]>prices[i]) {
+                    answer[j] = i-j;
                     stack.pop();
-                } else 
-                    break;
+                } else break;
             }
-            stack.push(i);    
-        }
-       //3. 나머지 안떨어진 값들 구하기
-            while(!stack.isEmpty()) {
+         stack.push(i);   
+        } 
+        while(!stack.isEmpty()) {
                 int i = stack.pop();
-             answer[i] = prices.length-1-i;
+                answer[i] = n-1-i;
         }
-        return answer;
+        return answer; 
     }
 }
